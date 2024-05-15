@@ -8,9 +8,9 @@ from helpful_classes.helper import Helper
 
 
 class OrderGenerator:
-    @staticmethod
+
     @allure.step('Генерируется новый заказ')
-    def generate_new_order():
+    def generate_new_order(self):
         response = requests.get(ApiUrl.INGREDIENT_INFO_URL)
         ingredients_dict = response.json()
 
@@ -30,8 +30,9 @@ class OrderGenerator:
     @allure.step('Генерируется новый заказ с несуществующими ингредиентами')
     def generate_new_order_non_existing_ingredients():
         ingredients_list = []
-        ingredient_1 = f'1234{Helper.generate_random_string(20)}'
-        ingredient_2 = f'2123{Helper.generate_random_string(20)}'
+        helper = Helper()
+        ingredient_1 = f'1234{helper.generate_random_string(20)}'
+        ingredient_2 = f'2123{helper.generate_random_string(20)}'
 
         ingredients_list.append(ingredient_1)
         ingredients_list.append(ingredient_2)
